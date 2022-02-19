@@ -5,6 +5,7 @@ A basic decentralised twitter-like app  built with Solidity, Web3 and React
 -Web3 Ether <br/>
 -Solidity <br/>
 -Metamask <br/>
+-Chai <br/>
 
 <details>
   <summary>Demo Screenshots</summary><details>
