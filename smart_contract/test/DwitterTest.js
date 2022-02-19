@@ -22,7 +22,7 @@ describe("Dwitter", function () {
 
   describe("Acvities", () => {
 
-     
+        
         it("", async function () {
           //  Post tweet contract works
        //  await Dwitter.postTweet(addr1.address,50,"Send etherium"); 

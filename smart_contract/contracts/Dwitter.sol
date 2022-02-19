@@ -15,6 +15,7 @@ contract Dwitter {
     string description;
     uint likes;
     address  author;
+    uint256 timestamp;
   }
 
   event TweetCreated(
@@ -22,7 +23,9 @@ contract Dwitter {
     string hash,
     string description,
     uint likes,
-    address  author
+    address  author,
+    uint256 timestamp
+
   );
 
   event TweetLiked(
@@ -32,6 +35,8 @@ contract Dwitter {
     uint likes,
     address  author
   );
+
+     Tweet[] tweetsStruct;
 
   constructor() public {
     name = "Dwitter";
@@ -47,11 +52,14 @@ contract Dwitter {
 
     // Increment image id
     tweetCount ++;
+  
+    // Add Tweet to the contract
+    tweetsStruct.push(Tweet(tweetCount, _imgHash, _description, 0, msg.sender,block.timestamp));
 
     // Add Tweet to the contract
-    tweets[tweetCount] = Tweet(tweetCount, _imgHash, _description, 0, msg.sender);
+    //tweets[tweetCount] = Tweet(tweetCount, _imgHash, _description, 0, msg.sender,block.timestamp);
     // Trigger an event
-    emit TweetCreated(tweetCount, _imgHash, _description, 0, msg.sender);
+    emit TweetCreated(tweetCount, _imgHash, _description, 0, msg.sender,block.timestamp);
   }
 
   function LikeTweet(uint _id) public payable {
@@ -72,4 +80,9 @@ contract Dwitter {
     emit TweetLiked(_id, _tweet.hash, _tweet.description, _tweet.likes, _author);
   }
 
+  function getTweets() public view returns ( Tweet[] memory){
+    
+   // Fetch the tweet
+    return tweetsStruct;
+    }
 }
